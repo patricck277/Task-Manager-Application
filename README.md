@@ -31,7 +31,7 @@ Installation and Running
 Step 1: Cloning the Repository
 
 git clone https://github.com/patricck277/Task-Manager-Application.git
-cd your-repository
+
 
 Step 2: Adding External Libraries
 Download the libraries and add them to the lib directory in your project:
