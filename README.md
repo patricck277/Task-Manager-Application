@@ -49,36 +49,6 @@ Run the application:
 java -cp "out/production/TaskManager;lib/*" TaskManager
 
 
-Project Structure
-
-TaskManager/
-│
-├── src/
-│   ├── TaskManager.java
-│   ├── Task.java
-│   ├── TaskDetailsDialog.java
-│   ├── TaskPDFGenerator.java
-│   ├── TaskIO.java
-│   └── DateLabelFormatter.java
-│
-├── lib/
-│   ├── itextpdf-7.1.15.jar
-│   ├── jdatepicker-1.3.4.jar
-│
-├── out/
-│   └── production/
-│       └── TaskManager/
-│           ├── TaskManager.class
-│           ├── Task.class
-│           ├── TaskDetailsDialog.class
-│           ├── TaskPDFGenerator.class
-│           ├── TaskIO.class
-│           └── DateLabelFormatter.class
-│
-├── tasks.dat (task save file)
-│
-└── README.md (project documentation)
-
 File Descriptions
 
 TaskManager.java
