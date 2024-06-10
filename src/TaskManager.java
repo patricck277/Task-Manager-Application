@@ -40,10 +40,10 @@ public class TaskManager extends JFrame {
         getContentPane().setBackground(Color.BLACK);
         setForeground(Color.WHITE);
 
-        tableModel = new DefaultTableModel(new Object[]{"Tytul", "Data wykonania", "Status", "Opis"}, 0) {
+        tableModel = new DefaultTableModel(new Object[]{"Title", "Due Date", "Status", "Description"}, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Zablokowanie edycji komórek
+                return false; // zablokowanie edycji komórek
             }
         };
         taskTable = new JTable(tableModel);
@@ -61,7 +61,7 @@ public class TaskManager extends JFrame {
         descriptionArea.setBackground(Color.DARK_GRAY);
         descriptionArea.setForeground(Color.WHITE);
 
-        statusComboBox = new JComboBox<>(new String[]{"Do zrobienia", "W trakcie", "Zakończone", "Wstrzymane"});
+        statusComboBox = new JComboBox<>(new String[]{"To Do", "In Progress", "Completed", "On Hold"});
         statusComboBox.setBackground(Color.DARK_GRAY);
         statusComboBox.setForeground(Color.WHITE);
 
@@ -75,7 +75,7 @@ public class TaskManager extends JFrame {
         datePicker.setBackground(Color.DARK_GRAY);
         datePicker.setForeground(Color.WHITE);
 
-        // Panel z elementami wprowadzania danych
+        // panel z elementami wprowadzania danych
         JPanel inputPanel = new JPanel(new GridBagLayout());
         inputPanel.setBackground(Color.BLACK);
         GridBagConstraints gbc = new GridBagConstraints();
@@ -96,7 +96,7 @@ public class TaskManager extends JFrame {
 
         gbc.gridx = 1;
         gbc.gridy = 0;
-        JLabel titleLabel = new JLabel("TYTUL:", SwingConstants.RIGHT);
+        JLabel titleLabel = new JLabel("TITLE:", SwingConstants.RIGHT);
         titleLabel.setForeground(Color.WHITE);
         inputPanel.add(titleLabel, gbc);
         gbc.gridx = 2;
@@ -105,7 +105,7 @@ public class TaskManager extends JFrame {
 
         gbc.gridx = 1;
         gbc.gridy = 1;
-        JLabel descriptionLabel = new JLabel("OPIS:", SwingConstants.RIGHT);
+        JLabel descriptionLabel = new JLabel("DESCRIPTION:", SwingConstants.RIGHT);
         descriptionLabel.setForeground(Color.WHITE);
         inputPanel.add(descriptionLabel, gbc);
         gbc.gridx = 2;
@@ -123,16 +123,16 @@ public class TaskManager extends JFrame {
 
         gbc.gridx = 1;
         gbc.gridy = 3;
-        JLabel dueDateLabel = new JLabel("DATA WYKONANIA:", SwingConstants.RIGHT);
+        JLabel dueDateLabel = new JLabel("DUE DATE:", SwingConstants.RIGHT);
         dueDateLabel.setForeground(Color.WHITE);
         inputPanel.add(dueDateLabel, gbc);
         gbc.gridx = 2;
         gbc.gridy = 3;
         inputPanel.add(datePicker, gbc);
 
-        JButton addButton = new JButton("DODAJ");
-        JButton detailsButton = new JButton("SZCZEGOLY");
-        JButton deleteButton = new JButton("USUN");
+        JButton addButton = new JButton("ADD");
+        JButton detailsButton = new JButton("DETAILS");
+        JButton deleteButton = new JButton("DELETE");
 
         // kolory buttonow
         addButton.setBackground(Color.GRAY);
@@ -175,10 +175,10 @@ public class TaskManager extends JFrame {
 
         // menu - Dodatki
         JMenuBar menuBar = new JMenuBar();
-        JMenu fileMenu = new JMenu("Dodatki");
-        JMenuItem importItem = new JMenuItem("Importuj zadania");
-        JMenuItem exportItem = new JMenuItem("Eksportuj zadania");
-        JMenuItem generatePdfItem = new JMenuItem("Generuj PDF");
+        JMenu fileMenu = new JMenu("File");
+        JMenuItem importItem = new JMenuItem("Import Tasks");
+        JMenuItem exportItem = new JMenuItem("Export Tasks");
+        JMenuItem generatePdfItem = new JMenuItem("Generate PDF");
 
         importItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -225,7 +225,7 @@ public class TaskManager extends JFrame {
         String dueDate = datePicker.getJFormattedTextField().getText();
 
         if (title.isEmpty() || description.isEmpty() || dueDate.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Wszystkie pola muszą być wypełnione", "Błąd", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "All fields must be filled", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -272,7 +272,7 @@ public class TaskManager extends JFrame {
             }
             oos.writeObject(tasks);
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Nie mozna zapisac zadan", "Blad", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Unable to save tasks", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     // import / export
@@ -288,9 +288,9 @@ public class TaskManager extends JFrame {
                             tableModel.getValueAt(i, 2) + ";" +
                             tableModel.getValueAt(i, 3));
                 }
-                JOptionPane.showMessageDialog(this, "Zadania wyeksportowane pomyślnie");
+                JOptionPane.showMessageDialog(this, "Tasks exported successfully");
             } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Błąd podczas eksportu zadań", "Błąd", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error during tasks export", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -308,10 +308,10 @@ public class TaskManager extends JFrame {
                         tableModel.addRow(parts);
                     }
                 }
-                JOptionPane.showMessageDialog(this, "Zadania zaimportowane pomyślnie");
+                JOptionPane.showMessageDialog(this, "Tasks imported successfully");
                 saveTasks();
             } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Błąd podczas importu zadań", "Błąd", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Error during tasks import", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

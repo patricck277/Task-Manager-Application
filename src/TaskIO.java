@@ -12,11 +12,11 @@ public class TaskIO {
             File file = fileChooser.getSelectedFile();
             try (PrintWriter writer = new PrintWriter(new FileWriter(file))) {
                 for (int i = 0; i < tableModel.getRowCount(); i++) {
-                    writer.println(tableModel.getValueAt(i, 0) + "," + tableModel.getValueAt(i, 1) + "," + tableModel.getValueAt(i, 2));
+                    writer.println(tableModel.getValueAt(i, 0) + "," + tableModel.getValueAt(i, 1) + "," + tableModel.getValueAt(i, 2) + "," + tableModel.getValueAt(i, 3));
                 }
-                JOptionPane.showMessageDialog(parent, "Zadania zostały wyeksportowane pomyślnie.");
+                JOptionPane.showMessageDialog(parent, "Tasks exported successfully.");
             } catch (IOException e) {
-                JOptionPane.showMessageDialog(parent, "Błąd podczas eksportowania zadań.", "Błąd", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(parent, "Error exporting tasks.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -30,13 +30,13 @@ public class TaskIO {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] parts = line.split(",");
-                    if (parts.length == 3) {
-                        tableModel.addRow(new Object[]{parts[0], parts[1], parts[2]});
+                    if (parts.length == 4) {
+                        tableModel.addRow(new Object[]{parts[0], parts[1], parts[2], parts[3]});
                     }
                 }
-                JOptionPane.showMessageDialog(parent, "Zadania zostały zaimportowane pomyślnie.");
+                JOptionPane.showMessageDialog(parent, "Tasks imported successfully.");
             } catch (IOException e) {
-                JOptionPane.showMessageDialog(parent, "Błąd podczas importowania zadań.", "Błąd", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(parent, "Error importing tasks.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

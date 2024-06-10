@@ -16,7 +16,7 @@ public class TaskDetailsDialog extends JDialog {
     private JButton saveButton;
 
     public TaskDetailsDialog(JFrame parent, Task task, int selectedRow, DefaultTableModel tableModel) {
-        super(parent, "Szczegóoy zadania", true);
+        super(parent, "Task Details", true);
         setSize(400, 300);
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -38,7 +38,7 @@ public class TaskDetailsDialog extends JDialog {
         descriptionArea.setBackground(Color.DARK_GRAY);
         descriptionArea.setForeground(Color.WHITE);
 
-        statusComboBox = new JComboBox<>(new String[]{"Do zrobienia", "W trakcie", "Zakończone", "Wstrzymane"});
+        statusComboBox = new JComboBox<>(new String[]{"To Do", "In Progress", "Completed", "On Hold"});
         statusComboBox.setSelectedItem(task.getStatus());
         statusComboBox.setBackground(Color.DARK_GRAY);
         statusComboBox.setForeground(Color.WHITE);
@@ -58,7 +58,7 @@ public class TaskDetailsDialog extends JDialog {
                 Integer.parseInt(task.getDueDate().substring(8, 10)));
         datePicker.getModel().setSelected(true);
 
-        JLabel titleLabelDialog = new JLabel("TYTUL:", SwingConstants.RIGHT);
+        JLabel titleLabelDialog = new JLabel("TITLE:", SwingConstants.RIGHT);
         titleLabelDialog.setForeground(Color.WHITE);
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -71,7 +71,7 @@ public class TaskDetailsDialog extends JDialog {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         add(titleField, gbc);
 
-        JLabel descriptionLabelDialog = new JLabel("OPIS:", SwingConstants.RIGHT);
+        JLabel descriptionLabelDialog = new JLabel("DESCRIPTION:", SwingConstants.RIGHT);
         descriptionLabelDialog.setForeground(Color.WHITE);
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -98,7 +98,7 @@ public class TaskDetailsDialog extends JDialog {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         add(statusComboBox, gbc);
 
-        JLabel dueDateLabelDialog = new JLabel("DATA WYKONANIA:", SwingConstants.RIGHT);
+        JLabel dueDateLabelDialog = new JLabel("DUE DATE:", SwingConstants.RIGHT);
         dueDateLabelDialog.setForeground(Color.WHITE);
         gbc.gridx = 0;
         gbc.gridy = 3;
@@ -111,7 +111,7 @@ public class TaskDetailsDialog extends JDialog {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         add(datePicker, gbc);
 
-        saveButton = new JButton("ZAPISZ");
+        saveButton = new JButton("SAVE");
         saveButton.setBackground(Color.GRAY);
         saveButton.setForeground(Color.WHITE);
         saveButton.addActionListener(new ActionListener() {
